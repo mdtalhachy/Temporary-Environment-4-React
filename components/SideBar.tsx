@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { useVSCodeStore } from "@/utils/store";
+import { useVSCodeStore } from "../store";
 import { PiTerminalWindow } from 'react-icons/pi';
 import { LuFiles } from 'react-icons/lu';
 export const Sidebar: React.FC = () => {
@@ -14,12 +14,10 @@ export const Sidebar: React.FC = () => {
   const theme = getTheme();
 
   const itemStyle = {
-    color: theme.sidebar.color,
     opacity: 0.5
   };
 
   const activeItemStyle = {
-    color: theme.sidebar.color,
     opacity: 1
   };
 
@@ -34,14 +32,16 @@ export const Sidebar: React.FC = () => {
       <div
         className="flex items-center py-2 px-4 cursor-pointer"
         onClick={() => setShowExplorer(!showExplorer)}
+        style={showExplorer ? activeItemStyle : itemStyle}
       >
-        <LuFiles style={showExplorer ? activeItemStyle : itemStyle}/>
+        <LuFiles color={theme.sidebar.color} />
       </div>
       <div
         className="flex items-center py-2 px-4 cursor-pointer"
         onClick={() => setShowTerminal(!showTerminal)}
+        style={showTerminal ? activeItemStyle : itemStyle}
       >
-        <PiTerminalWindow style={showTerminal ? activeItemStyle : itemStyle} />
+        <PiTerminalWindow color={theme.sidebar.color} />
       </div>
     </div>
   );
